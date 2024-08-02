@@ -112,11 +112,9 @@ app.post("/shorten", async (c) => {
   return c.html(html(shortenedUrl));
 });
 
-// Route to handle redirection from short URLs
 app.get("/:code", async (c) => {
   const { code } = c.req.param();
 
-  // Query the database for the original URL
   const { results } = await c.env.DB.prepare(
     "SELECT url FROM urls WHERE code = ?"
   )
