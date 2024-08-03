@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { IUrl } from "./modal/urlModal";
+import { nanoid } from "nanoid";
 
 type Bindings = {
   [key in keyof CloudflareBindings]: CloudflareBindings[key];
@@ -75,6 +76,10 @@ const html = (shortenedUrl: string) => `<!DOCTYPE html>
 </body>
 </html>
 `;
+
+function getRandomNumber(min: number = 2, max: number = 36): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 // Route to handle URL shortening
 app.post("/shorten", async (c) => {
   const url = (await c.req.parseBody()).url as string;
@@ -99,14 +104,15 @@ app.post("/shorten", async (c) => {
   }
 
   // URL does not exist, generate a new short code
-  const shortCode = Math.random().toString(36).substring(2, 8);
-
+  const shortCode = Math.random().toString(getRandomNumber()).substring(2, 8);
+  const id = nanoid();
   // Insert the URL and short code into the database
-  await c.env.DB.prepare("INSERT INTO urls (url, code) VALUES (?, ?)")
-    .bind(url, shortCode)
+  await c.env.DB.prepare("INSERT INTO urls (id,url, code) VALUES (?,?, ?)")
+    .bind(id, url, shortCode)
     .run();
 
   const requestUrl = new URL(c.req.url, `https://${c.req.header("host")}`);
+  console.log(c.req);
   const shortenedUrl = `${requestUrl.origin}/${shortCode}`;
 
   return c.html(html(shortenedUrl));
