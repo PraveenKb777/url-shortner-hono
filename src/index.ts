@@ -13,69 +13,19 @@ export interface HonoBindings {
 const app = new Hono<HonoBindings>();
 
 app.get("/", (c) => {
-  return c.html(`
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener - MGTech</title>
-</head>
-<body style="font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #f5f5f5;">
-
-    <div style="text-align: center; margin-bottom: 20px;">
-        <h1 style="color: #333;">MGTech URL Shortener</h1>
-    </div>
-
-    <div style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px;">
-        <form action="/shorten" method="POST" style="display: flex; flex-direction: column;">
-            <label for="url" style="margin-bottom: 10px; font-size: 1.2em; color: #555;">Enter URL to shorten:</label>
-            <input type="text" id="url" name="url" style="padding: 10px; font-size: 1em; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 20px;">
-            <button type="submit" style="padding: 10px; font-size: 1em; color: #fff; background-color: #007bff; border: none; border-radius: 5px; cursor: pointer;">Shorten</button>
-        </form>
-    </div>
-
-</body>
-</html>
-
-  `);
+  return c.html(
+    `<!doctypehtml><html lang=en><meta charset=UTF-8><title>URL Shortener - Quickly Shorten and Share URLs | MGTech</title><meta content="Use MGtech's Url shortner to shorten long URLs in seconds. Easily create  short links for sharing on social media, emails, and more. Get started now!"name=description><meta content="URL shortener, shorten URLs, link shortener, short links, free URL shortener, online URL shortener"name=keywords><link href=https://www.short.pkbmg.shop/ rel=canonical><meta content="Shorten URLs with MGTech's URL Shortner"property=og:title><meta content="Quickly shorten long URLs and share them easily with our free URL shortener."property=og:description><meta content=https://www.short.pkbmg.shop/ property=og:url><meta content=website property=og:type><meta content=summary_large_image name=twitter:card><meta content="Shorten URLs with YourAppName"name=twitter:title><meta content="Use our free tool to shorten long URLs quickly and easily."name=twitter:description><meta content="width=device-width,initial-scale=1"name=viewport><meta content="index, follow"name=robots><meta content="width=device-width,initial-scale=1"name=viewport><body style=font-family:Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0;background-color:#f5f5f5><div style=text-align:center;margin-bottom:20px><h1 style=color:#333>MGTech URL Shortener</h1></div><div style="background-color:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1);width:100%;max-width:400px"><form action=/shorten method=POST style=display:flex;flex-direction:column><label for=url style=margin-bottom:10px;font-size:1.2em;color:#555>Enter URL to shorten:</label> <input id=url name=url style="padding:10px;font-size:1em;border:1px solid #ddd;border-radius:5px;margin-bottom:20px"> <button style=padding:10px;font-size:1em;color:#fff;background-color:#007bff;border:none;border-radius:5px;cursor:pointer type=submit>Shorten</button></form></div>`
+  );
 });
-const html = (shortenedUrl: string) => `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener - MGTech</title>
-</head>
-<body style="font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #f5f5f5;">
-
-    <div style="text-align: center; margin-bottom: 20px;">
-        <h1 style="color: #333;">MGTech URL Shortener</h1>
-    </div>
-
-    <div style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px;">
-        <div id="result" style="margin-top: 20px; display: block;">
-            <p style="font-size: 1.1em; color: #555;">Shortened URL:</p>
-            <div style="display: flex; align-items: center;">
-                <input type="text" id="shortenedUrl" value="${shortenedUrl}" readonly style="flex: 1; padding: 10px; font-size: 1em; border: 1px solid #ddd; border-radius: 5px; margin-right: 10px;">
-                <button onclick="copyToClipboard()" style="padding: 10px; font-size: 1em; color: #fff; background-color: #28a745; border: none; border-radius: 5px; cursor: pointer;">Copy</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function copyToClipboard() {
+const html = (
+  shortenedUrl: string
+) => `<!doctypehtml><html lang=en><meta charset=UTF-8><title>URL Shortener - Quickly Shorten and Share URLs | MGTech</title><meta content="Use MGtech's Url shortner to shorten long URLs in seconds. Easily create  short links for sharing on social media, emails, and more. Get started now!"name=description><meta content="URL shortener, shorten URLs, link shortener, short links, free URL shortener, online URL shortener"name=keywords><link href=https://www.short.pkbmg.shop/ rel=canonical><meta content="Shorten URLs with MGTech's URL Shortner"property=og:title><meta content="Quickly shorten long URLs and share them easily with our free URL shortener."property=og:description><meta content=https://www.short.pkbmg.shop/ property=og:url><meta content=website property=og:type><meta content=summary_large_image name=twitter:card><meta content="Shorten URLs with YourAppName"name=twitter:title><meta content="Use our free tool to shorten long URLs quickly and easily."name=twitter:description><meta content="width=device-width,initial-scale=1"name=viewport><meta content="index, follow"name=robots><meta content="width=device-width,initial-scale=1"name=viewport><body style=font-family:Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0;background-color:#f5f5f5><div style=text-align:center;margin-bottom:20px><h1 style=color:#333>MGTech URL Shortener</h1></div><div style="background-color:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1);width:100%;max-width:400px"><div style=margin-top:20px;display:block id=result><p style=font-size:1.1em;color:#555>Shortened URL:<div style=display:flex;align-items:center><input id=shortenedUrl readonly style="flex:1;padding:10px;font-size:1em;border:1px solid #ddd;border-radius:5px;margin-right:10px"value=${shortenedUrl}> <button onclick=copyToClipboard() style=padding:10px;font-size:1em;color:#fff;background-color:#28a745;border:none;border-radius:5px;cursor:pointer>Copy</button></div></div></div><script>function copyToClipboard() {
             const shortenedUrlField = document.getElementById('shortenedUrl');
             shortenedUrlField.select();
             shortenedUrlField.setSelectionRange(0, 99999); // For mobile devices
             document.execCommand('copy');
             alert('Shortened URL copied to clipboard: ' + shortenedUrlField.value);
-        }
-    </script>
-
-</body>
-</html>
-`;
+        }</script>`;
 
 function getRandomNumber(min: number = 2, max: number = 36): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
